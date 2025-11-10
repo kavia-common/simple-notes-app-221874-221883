@@ -1,43 +1,43 @@
 :root {
-  /* Accent palette */
+  /* Accent palette (kept as requested) */
   --color-primary: #3b82f6; /* blue-500 */
-  --color-secondary: #94a3b8; /* slate-400 for muted on dark */
+  --color-secondary: #64748b; /* slate-500 on light */
   --color-success: #06b6d4; /* cyan-500 */
   --color-error: #EF4444;
 
-  /* Default to dark mode tokens */
+  /* Default to LIGHT mode tokens */
+  --color-bg: #f9fafb;        /* app background */
+  --color-surface: #ffffff;   /* cards/surfaces */
+  --color-surface-2: #f3f4f6; /* hover/inputs */
+  --color-text: #111827;      /* gray-900 text */
+  --color-text-muted: #6b7280;/* gray-500 */
+
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  /* Softer shadow for light surfaces */
+  --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+
+  /* Borders visible on light */
+  --border: 1px solid #e5e7eb; /* gray-200 border */
+  --border-strong: 1px solid #d1d5db; /* gray-300 for emphasis */
+
+  /* Focus ring tuned for light contrast */
+  --focus-ring: 0 0 0 3px rgba(59,130,246,0.35);
+}
+
+/* Dark theme override when user opts-in via toggle/persisted pref */
+[data-theme="dark"] {
+  --color-secondary: #94a3b8; /* slate-400 for muted on dark */
   --color-bg: #0b0f19;         /* near-slate-900 for app background */
   --color-surface: #0f172a;    /* slate-900/800 mix for surfaces */
   --color-surface-2: #111827;  /* slightly lighter surface for hovers/active */
   --color-text: #e5e7eb;       /* gray-200 text */
   --color-text-muted: #9ca3af; /* gray-400 */
-
-  --radius: 12px;
-  --radius-sm: 8px;
-
-  /* Softer shadow for dark surfaces */
   --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 6px 24px rgba(0,0,0,0.3);
-
-  /* Borders visible on dark */
   --border: 1px solid #1f2937; /* gray-800 border */
   --border-strong: 1px solid #374151; /* gray-700 for emphasis */
-
-  /* Focus ring tuned for dark contrast */
   --focus-ring: 0 0 0 3px rgba(59,130,246,0.5);
-}
-
-/* Light theme override if user opts-in via toggle/persisted pref */
-[data-theme="light"] {
-  --color-secondary: #64748b;
-  --color-bg: #f9fafb;
-  --color-surface: #ffffff;
-  --color-surface-2: #f3f4f6;
-  --color-text: #111827;
-  --color-text-muted: #6b7280;
-  --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
-  --border: 1px solid #e5e7eb;
-  --border-strong: 1px solid #d1d5db;
-  --focus-ring: 0 0 0 3px rgba(59,130,246,0.35);
 }
 
 * { box-sizing: border-box; }
@@ -106,7 +106,7 @@
 .btn.subtle {
   background: var(--color-surface-2);
 }
-.btn.subtle:hover { background: #1f2937; } /* gray-800 */
+.btn.subtle:hover { background: #e5e7eb; } /* gray-200 on light for clear hover */
 .btn.danger {
   background: var(--color-error);
   color: #fff;
@@ -161,7 +161,7 @@
   background: transparent;
   transition: background-color .12s ease, border-color .12s ease;
 }
-.note-item:hover { background: rgba(255,255,255,0.03); }
+.note-item:hover { background: rgba(0,0,0,0.03); } /* subtle on light */
 .note-item:last-child { border-bottom: none; }
 .note-item.active { background: rgba(59, 130, 246, 0.16); }
 .note-item.pinned { border-left: 3px solid var(--color-primary); }
@@ -182,7 +182,7 @@
   cursor: pointer;
   transition: background-color .12s ease, border-color .12s ease, color .12s ease;
 }
-.icon-btn:hover { border: var(--border-strong); background: #1f2937; }
+.icon-btn:hover { border: var(--border-strong); background: #e5e7eb; } /* gray-200 */
 .icon-btn.danger { border-color: transparent; background: rgba(239, 68, 68, 0.14); color: var(--color-error); }
 .icon-btn.danger:hover { background: rgba(239, 68, 68, 0.22); }
 .icon-btn:focus-visible { box-shadow: var(--focus-ring); }
@@ -247,7 +247,7 @@
   border: var(--border);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
-  background: #111827; /* surface-2 variant for inputs */
+  background: var(--color-surface-2); /* adapts to light/dark */
   color: var(--color-text);
   outline: none;
 }

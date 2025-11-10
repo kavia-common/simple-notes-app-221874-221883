@@ -20,13 +20,13 @@ import { useUndoRedo } from './hooks/useUndoRedo';
 function App() {
   /** Main Notes application with split layout and localStorage persistence. */
 
-  // Theme handling with default dark mode and persisted preference
+  // Theme handling with default LIGHT mode and persisted preference
   const [theme, setTheme] = useState(() => {
     try {
       const saved = window.localStorage.getItem('ui.theme');
-      return saved === 'light' || saved === 'dark' ? saved : 'dark';
+      return saved === 'light' || saved === 'dark' ? saved : 'light';
     } catch {
-      return 'dark';
+      return 'light';
     }
   });
 
