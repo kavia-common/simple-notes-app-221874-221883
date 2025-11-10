@@ -30,7 +30,7 @@ export default function Header({ searchText, onSearchChange, onNewNote, onToggle
         <button
           className="btn subtle"
           onClick={onResetTheme}
-          aria-label="Reset theme to light and clear saved preference"
+          aria-label="Reset theme to default and clear saved preference"
           title="Reset Theme"
         >
           Reset Theme

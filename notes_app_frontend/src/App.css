@@ -1,43 +1,41 @@
 :root {
   /* Accent palette (kept as requested) */
   --color-primary: #3b82f6; /* blue-500 */
-  --color-secondary: #64748b; /* slate-500 on light */
   --color-success: #06b6d4; /* cyan-500 */
   --color-error: #EF4444;
 
-  /* Default to LIGHT mode tokens */
-  --color-bg: #f9fafb;        /* app background */
-  --color-surface: #ffffff;   /* cards/surfaces */
-  --color-surface-2: #f3f4f6; /* hover/inputs */
-  --color-text: #111827;      /* gray-900 text */
-  --color-text-muted: #6b7280;/* gray-500 */
-
-  --radius: 12px;
-  --radius-sm: 8px;
-
-  /* Softer shadow for light surfaces */
-  --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
-
-  /* Borders visible on light */
-  --border: 1px solid #e5e7eb; /* gray-200 border */
-  --border-strong: 1px solid #d1d5db; /* gray-300 for emphasis */
-
-  /* Focus ring tuned for light contrast */
-  --focus-ring: 0 0 0 3px rgba(59,130,246,0.35);
-}
-
-/* Dark theme override when user opts-in via toggle/persisted pref */
-[data-theme="dark"] {
+  /* Default to DARK mode tokens (initial paint is dark) */
   --color-secondary: #94a3b8; /* slate-400 for muted on dark */
   --color-bg: #0b0f19;         /* near-slate-900 for app background */
   --color-surface: #0f172a;    /* slate-900/800 mix for surfaces */
   --color-surface-2: #111827;  /* slightly lighter surface for hovers/active */
   --color-text: #e5e7eb;       /* gray-200 text */
   --color-text-muted: #9ca3af; /* gray-400 */
+
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  /* Shadow and borders tuned for dark */
   --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 6px 24px rgba(0,0,0,0.3);
   --border: 1px solid #1f2937; /* gray-800 border */
   --border-strong: 1px solid #374151; /* gray-700 for emphasis */
+
+  /* Focus ring tuned for dark contrast */
   --focus-ring: 0 0 0 3px rgba(59,130,246,0.5);
+}
+
+/* Light theme override when user selects light */
+[data-theme="light"] {
+  --color-secondary: #64748b; /* slate-500 on light */
+  --color-bg: #f9fafb;        /* app background */
+  --color-surface: #ffffff;   /* cards/surfaces */
+  --color-surface-2: #f3f4f6; /* hover/inputs */
+  --color-text: #111827;      /* gray-900 text */
+  --color-text-muted: #6b7280;/* gray-500 */
+  --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+  --border: 1px solid #e5e7eb; /* gray-200 border */
+  --border-strong: 1px solid #d1d5db; /* gray-300 for emphasis */
+  --focus-ring: 0 0 0 3px rgba(59,130,246,0.35);
 }
 
 * { box-sizing: border-box; }

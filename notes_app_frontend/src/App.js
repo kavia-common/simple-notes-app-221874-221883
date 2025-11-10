@@ -20,15 +20,27 @@ import { useUndoRedo } from './hooks/useUndoRedo';
 function App() {
   /** Main Notes application with split layout and localStorage persistence. */
 
-  // Theme handling with default LIGHT mode and persisted preference
+  // Theme handling with default DARK mode and persisted preference
   const [theme, setTheme] = useState(() => {
     try {
       const saved = window.localStorage.getItem('ui.theme');
-      return saved === 'light' || saved === 'dark' ? saved : 'light';
+      // If a saved preference exists, use it; otherwise default to dark
+      return saved === 'light' || saved === 'dark' ? saved : 'dark';
     } catch {
-      return 'light';
+      return 'dark';
     }
   });
+
+  // On mount, ensure initial paint sets data-theme correctly even before any user interaction
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem('ui.theme');
+      const initial = saved === 'light' || saved === 'dark' ? saved : 'dark';
+      document.documentElement.setAttribute('data-theme', initial);
+    } catch {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -197,8 +209,9 @@ function App() {
           } catch {
             // ignore storage errors
           }
-          document.documentElement.setAttribute('data-theme', 'light');
-          setTheme('light');
+          // Reset to default (dark) since app defaults are dark
+          document.documentElement.setAttribute('data-theme', 'dark');
+          setTheme('dark');
         }}
       />
       <div className="content">
