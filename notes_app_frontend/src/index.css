@@ -8,10 +8,12 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   line-height: 1.5;
-  background: #f9fafb;
-  color: #111827;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 img, svg, video, canvas { display: block; max-width: 100%; }
 button, input, textarea { font-family: inherit; font-size: 100%; }
 a { color: inherit; text-decoration: none; }
-:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,0.35); border-radius: 6px; }
+
+/* visible and accessible on dark */
+:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,0.55); border-radius: 6px; }

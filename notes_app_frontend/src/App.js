@@ -20,10 +20,23 @@ import { useUndoRedo } from './hooks/useUndoRedo';
 function App() {
   /** Main Notes application with split layout and localStorage persistence. */
 
-  // Theme handling (light as default). This is a simple toggle placeholder.
-  const [theme, setTheme] = useState('light');
+  // Theme handling with default dark mode and persisted preference
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = window.localStorage.getItem('ui.theme');
+      return saved === 'light' || saved === 'dark' ? saved : 'dark';
+    } catch {
+      return 'dark';
+    }
+  });
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    try {
+      window.localStorage.setItem('ui.theme', theme);
+    } catch {
+      // ignore quota errors
+    }
   }, [theme]);
 
   // Notes persistence using dedicated storage util + a mirrored localStorage hook for easy reactivity
