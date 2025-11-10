@@ -15,5 +15,5 @@ img, svg, video, canvas { display: block; max-width: 100%; }
 button, input, textarea { font-family: inherit; font-size: 100%; }
 a { color: inherit; text-decoration: none; }
 
-/* visible and accessible focus ring using theme token */
-:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 6px; }
+/* visible and accessible on dark */
+:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,0.55); border-radius: 6px; }

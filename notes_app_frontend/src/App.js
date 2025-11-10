@@ -20,27 +20,15 @@ import { useUndoRedo } from './hooks/useUndoRedo';
 function App() {
   /** Main Notes application with split layout and localStorage persistence. */
 
-  // Theme handling with default DARK mode and persisted preference
+  // Theme handling with default dark mode and persisted preference
   const [theme, setTheme] = useState(() => {
     try {
       const saved = window.localStorage.getItem('ui.theme');
-      // If a saved preference exists, use it; otherwise default to dark
       return saved === 'light' || saved === 'dark' ? saved : 'dark';
     } catch {
       return 'dark';
     }
   });
-
-  // On mount, ensure initial paint sets data-theme correctly even before any user interaction
-  useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem('ui.theme');
-      const initial = saved === 'light' || saved === 'dark' ? saved : 'dark';
-      document.documentElement.setAttribute('data-theme', initial);
-    } catch {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -203,16 +191,6 @@ function App() {
         onSearchChange={setSearchText}
         onNewNote={handleNewNote}
         onToggleTheme={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))}
-        onResetTheme={() => {
-          try {
-            window.localStorage.removeItem('ui.theme');
-          } catch {
-            // ignore storage errors
-          }
-          // Reset to default (dark) since app defaults are dark
-          document.documentElement.setAttribute('data-theme', 'dark');
-          setTheme('dark');
-        }}
       />
       <div className="content">
         <NotesList
