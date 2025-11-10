@@ -191,6 +191,15 @@ function App() {
         onSearchChange={setSearchText}
         onNewNote={handleNewNote}
         onToggleTheme={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))}
+        onResetTheme={() => {
+          try {
+            window.localStorage.removeItem('ui.theme');
+          } catch {
+            // ignore storage errors
+          }
+          document.documentElement.setAttribute('data-theme', 'light');
+          setTheme('light');
+        }}
       />
       <div className="content">
         <NotesList

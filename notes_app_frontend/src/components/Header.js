@@ -1,7 +1,7 @@
 import React from 'react';
 
 // PUBLIC_INTERFACE
-export default function Header({ searchText, onSearchChange, onNewNote, onToggleTheme }) {
+export default function Header({ searchText, onSearchChange, onNewNote, onToggleTheme, onResetTheme }) {
   /** Header containing title, search bar, and New Note button. */
   return (
     <header className="header" role="banner">
@@ -26,6 +26,14 @@ export default function Header({ searchText, onSearchChange, onNewNote, onToggle
         </button>
         <button className="btn subtle" onClick={onToggleTheme} aria-label="Toggle theme">
           Theme
+        </button>
+        <button
+          className="btn subtle"
+          onClick={onResetTheme}
+          aria-label="Reset theme to light and clear saved preference"
+          title="Reset Theme"
+        >
+          Reset Theme
         </button>
       </div>
     </header>
